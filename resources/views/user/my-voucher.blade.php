@@ -2,13 +2,69 @@
 @section('title', $data['page_title'])
 @section('content')
     <x-nav-bar></x-nav-bar>
-    <div class="col-lg-12">
-        <div class="row">
 
-            <div class="card row m-4 border-0 rounded-3 shadow-lg fw-bolder fs-5">
-                <div class="bg-success pt-2 rounded-top-2">
 
+    <div class="container">
+        <div class="row gap-3 justify-content-center">
+            <div class="card col-lg-2 bg-success">
+                <div class="fw-bolder">
+                    <h4 class="fs-4 mt-2 card-title">Diskon</h4>
+                    <p class="card-title">10% s.d. Rp100rb</p>
                 </div>
+                <p class="card-text">Berlaku hingga</p>
+                <p class="card-text mb-2">17 September 2024</p>
+            </div>
+            <div class="card col-lg-2 bg-dark">
+
+            </div>
+            <div class="card col-lg-2 bg-danger">
+
+            </div>
+            <div class="card col-lg-2 bg-dark">
+
+            </div>
+            <div class="card col-lg-2 bg-danger">
+
+            </div>
+            <div class="card col-lg-2 bg-success">
+                <div class="fw-bolder">
+                    <h4 class="fs-4 mt-2 card-title">Diskon</h4>
+                    <p class="card-title">10% s.d. Rp100rb</p>
+                </div>
+                <p class="card-text">Berlaku hingga</p>
+                <p class="card-text mb-2">17 September 2024</p>
+            </div>
+            <div class="card col-lg-2 bg-dark">
+
+            </div>
+            <div class="card col-lg-2 bg-danger">
+
+            </div>
+            <div class="card col-lg-2 bg-dark">
+
+            </div>
+            <div class="card col-lg-2 bg-danger">
+
+            </div>
+            <div class="card col-lg-2 bg-success">
+                <div class="fw-bolder">
+                    <h4 class="fs-4 mt-2 card-title">Diskon</h4>
+                    <p class="card-title">10% s.d. Rp100rb</p>
+                </div>
+                <p class="card-text">Berlaku hingga</p>
+                <p class="card-text mb-2">17 September 2024</p>
+            </div>
+            <div class="card col-lg-2 bg-dark">
+
+            </div>
+            <div class="card col-lg-2 bg-danger">
+
+            </div>
+            <div class="card col-lg-2 bg-dark">
+
+            </div>
+            <div class="card col-lg-2 bg-danger">
+
             </div>
         </div>
     </div>
