@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="{{ asset('asset/vendor/bootstrap/icon/font/bootstrap-icons.min.css') }}">
 </head>
 
-<body class="bg-light" style="font-family: 'Roboto', serif;">
+<body class="bg-body-secondary" style="font-family: 'Roboto', serif;">
     @yield('content')
 {{--    <script src="{{ asset('asset/vendor/bootstrap/js/bootstrap.min.js') }}"></script>--}}
     <script src="{{ asset('asset/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
