@@ -21,4 +21,6 @@ class UserController extends Controller
         $data['page_title'] = 'My Voucher';
         return view('user.my-voucher', compact('data'));
     }
+
+
 }
