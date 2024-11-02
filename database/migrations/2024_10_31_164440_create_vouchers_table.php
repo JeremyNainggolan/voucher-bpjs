@@ -14,6 +14,7 @@ return new class extends Migration
             $table->string('kode_voucher')->unique();
             $table->integer('jumlah_voucher');
             $table->date('expired_date');
+            $table->string('diklaim_oleh');
             $table->timestamps();
         });
     }

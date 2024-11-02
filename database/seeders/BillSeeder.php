@@ -21,7 +21,7 @@ class BillSeeder extends Seeder
             Bill::create([
                 'user_id' => $user->id,
                 'nama' => $user->name,
-                'nik' => '1234' . str_pad($user->id, 12, '0', STR_PAD_LEFT),
+                'nik' => $user->NIK,
                 'pembayaran' => rand(50000, 200000),
                 'channel' => ['Bank Transfer', 'E-wallet', 'Minimarket'][rand(0, 2)],
                 'tanggal_jatuh_tempo' => now()->addDays(rand(1, 30)),
