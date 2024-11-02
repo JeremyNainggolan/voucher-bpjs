@@ -31,7 +31,7 @@
                                 <select id="voucherSelect" class="form-select" aria-label="Default select example">
                                     <option selected>Cek Voucher</option>
                                     @foreach($data['bills'] as $bill)
-                                        <option value="{{ $bill->jumlah_voucher }}"> {{$bill->nama_voucher }}</option>
+                                        <option value="{{ $bill->voucher_name != null ? $bill->jumlah_voucher : 'Voucher Tidak Tersedia' }}"> {{$bill->voucher_name != null ? $bill->nama_voucher : 'Voucher Tidak Tersedia' }}</option>
                                     @endforeach
                                 </select>
                                 <button type="button" class="btn btn-outline-secondary" id="applyVoucher">Terapkan</button>

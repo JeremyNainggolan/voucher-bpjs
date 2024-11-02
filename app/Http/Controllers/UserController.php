@@ -35,10 +35,23 @@ class UserController extends Controller
     public function bill_konfirmasi($id)
     {
         $data['page_title'] = 'Konfirmasi Pembayaran';
-        $data['bills'] = DB::table('bills')
+        $exist = DB::table('bills')
             ->join('users', 'bills.user_id', '=', 'users.id')
             ->join('vouchers', 'users.voucher', '=', 'vouchers.kode_voucher')
             ->where('bills.user_id', $id)->get();
+        
+        if ($exist->isEmpty()) {
+            $data['bills'] = DB::table('bills')
+                ->join('users', 'bills.user_id', '=', 'users.id')
+                ->select('bills.*', 'users.name', 'users.email', 'users.voucher', 'users.voucher_name')
+                ->where('bills.user_id', $id)->get();
+        } else {
+            $data['bills'] = DB::table('bills')
+                ->join('users', 'bills.user_id', '=', 'users.id')
+                ->join('vouchers', 'users.voucher', '=', 'vouchers.kode_voucher')
+                ->select('bills.*', 'users.name', 'users.email', 'users.voucher', 'users.voucher_name', 'vouchers.jumlah_voucher')
+                ->where('bills.user_id', $id)->get();
+        }
         return view('user.bill-konfirmasi', compact('data'));
     }
 
