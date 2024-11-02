@@ -15,9 +15,9 @@
                             <h5 class="mb-3">Informasi Paket</h5>
                             <p><strong>Nama:</strong> {{ $bill->nama }}</p>
                             <p><strong>NIK:</strong> {{ $bill->nik }}</p>
-                            <p><strong>Total Harga:</strong>
-                                <strong class="total-harga" data-original-price="{{ $bill->pembayaran }}">
-                                    Rp {{ number_format($bill->pembayaran, 0, ',', '.') }}
+                            <p><strong>Total Harga: Rp</strong>
+                                <strong id="total-harga" data-initial-total="{{ $bill->pembayaran }}">
+                                    {{ number_format($bill->pembayaran, 0, ',', '.') }}
                                 </strong>
                             </p>
                         @endforeach
@@ -31,33 +31,12 @@
                                 <select id="voucherSelect" class="form-select" aria-label="Default select example">
                                     <option selected>Cek Voucher</option>
                                     @foreach($data['bills'] as $bill)
-                                        <option value="{{ $bill->jumlah_voucher }}">{{ $bill->nama_voucher }}</option>
+                                        <option value="{{ $bill->jumlah_voucher }}"> {{$bill->nama_voucher }}</option>
                                     @endforeach
                                 </select>
                                 <button type="button" class="btn btn-outline-secondary" id="applyVoucher">Terapkan</button>
                             </div>
 
-                            <!-- Informasi Pembayaran -->
-                            <h5 class="mb-3">Metode Pembayaran</h5>
-                            <div class="mb-3">
-                                <label for="paymentMethod" class="form-label">Pilih Metode Pembayaran</label>
-                                <select class="form-select" id="paymentMethod" required>
-                                    <option value="" selected disabled>Pilih metode...</option>
-                                    <option value="transfer">Transfer Bank</option>
-                                    <option value="creditCard">Kartu Kredit</option>
-                                    <option value="ewallet">E-Wallet</option>
-                                </select>
-                            </div>
-                            <div class="mb-3">
-                                <label for="email" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="email" placeholder="Masukkan email Anda" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="phone" class="form-label">Nomor Telepon</label>
-                                <input type="tel" class="form-control" id="phone" placeholder="Masukkan nomor telepon" required>
-                            </div>
-
-                            <!-- Tombol Bayar -->
                             <button type="submit" class="btn btn-primary w-100 mt-3">Bayar Sekarang</button>
                         </form>
                     </div>
@@ -66,4 +45,24 @@
         </div>
     </div>
 
+    <script>
+        document.getElementById('applyVoucher').addEventListener('click', function() {
+            // Mendapatkan nilai voucher yang dipilih
+            let voucherSelect = document.getElementById('voucherSelect');
+            let discount = parseFloat(voucherSelect.value);
+
+            // Mendapatkan elemen total harga dan nilai awalnya
+            let totalHargaElement = document.getElementById('total-harga');
+            let initialTotal = parseFloat(totalHargaElement.getAttribute('data-initial-total'));
+
+            // Jika ada voucher yang dipilih, kurangi total harga
+            if (!isNaN(discount) && discount > 0) {
+                let newTotal = initialTotal - discount;
+                totalHargaElement.textContent = newTotal.toLocaleString('id-ID');
+            } else {
+                // Jika tidak ada voucher yang dipilih, tampilkan total harga awal
+                totalHargaElement.textContent = initialTotal.toLocaleString('id-ID');
+            }
+        });
+    </script>
 @endsection
