@@ -28,10 +28,10 @@
                         <h5 class="mb-3">Kode Voucher</h5>
                         <form>
                             <div class="input-group mb-3">
-                                <select class="form-select" aria-label="Default select example">
+                                <select id="voucherSelect" class="form-select" aria-label="Default select example">
                                     <option selected>Cek Voucher</option>
                                     @foreach($data['bills'] as $bill)
-                                        <option value="{{ $bill->jumlah_voucher }}">{{ $bill->jumlah_voucher }}</option>
+                                        <option value="{{ $bill->jumlah_voucher }}">{{ $bill->nama_voucher }}</option>
                                     @endforeach
                                 </select>
                                 <button type="button" class="btn btn-outline-secondary" id="applyVoucher">Terapkan</button>
@@ -66,29 +66,4 @@
         </div>
     </div>
 
-    <!-- JavaScript untuk menerapkan kode voucher -->
-    <script>
-        document.getElementById('applyVoucher').addEventListener('click', function () {
-            // Ambil total harga awal dari elemen di halaman
-            let totalHargaElement = document.querySelector('.total-harga');
-            let totalHarga = parseFloat(totalHargaElement.getAttribute('data-original-price'));
-
-            // Ambil jumlah voucher yang dipilih
-            let voucherSelect = document.querySelector('select[aria-label="Default select example"]');
-            let jumlahVoucher = parseFloat(voucherSelect.value);
-
-            // Validasi voucher yang dipilih
-            if (isNaN(jumlahVoucher)) {
-                alert("Silakan pilih voucher yang valid.");
-                return;
-            }
-
-            // Hitung harga baru setelah diskon
-            let hargaSetelahVoucher = totalHarga - jumlahVoucher;
-            hargaSetelahVoucher = Math.max(hargaSetelahVoucher, 0); // Pastikan harga tidak kurang dari 0
-
-            // Format harga baru dengan titik sebagai pemisah ribuan
-            totalHargaElement.innerText = 'Rp ' + hargaSetelahVoucher.toLocaleString('id-ID');
-        });
-    </script>
 @endsection
