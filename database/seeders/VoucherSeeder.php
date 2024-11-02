@@ -19,7 +19,6 @@ class VoucherSeeder extends Seeder
             'nama_voucher' => 'Sosialisasi',
             'kode_voucher'=> 'VOUCHERGACOR',
             'jumlah_voucher' => '15000',
-            'diklaim_oleh' => '',
             'expired_date' => '2024-10-31',
         ]);
 
@@ -27,7 +26,6 @@ class VoucherSeeder extends Seeder
             'nama_voucher' => 'Donor Darah',
             'kode_voucher'=> 'SEMOGABERKAH',
             'jumlah_voucher' => '20000',
-            'diklaim_oleh' => '',
             'expired_date' => '2024-10-31',
         ]);
 
@@ -35,7 +33,6 @@ class VoucherSeeder extends Seeder
             'nama_voucher' => 'Donor Plasma',
             'kode_voucher'=> 'SEHATSELALU',
             'jumlah_voucher' => '25000',
-            'diklaim_oleh' => '',
             'expired_date' => '2024-10-31',
         ]);
     }

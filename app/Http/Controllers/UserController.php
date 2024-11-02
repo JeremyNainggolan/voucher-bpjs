@@ -71,8 +71,48 @@ class UserController extends Controller
 
     public function post_bill(Request $request)
     {
+        $request->validate([
+            'kode_voucher' => 'required',
+            'bill_id' => 'required',
+        ]);
 
+        $bill = DB::table('bills')
+            ->where('id', (int)$request->bill_id)
+            ->update(['status' => 'Sudah Dibayar']);
+
+        $voucher = DB::table('vouchers')->where('kode_voucher', $request->kode_voucher)->delete();
+
+        if (DB::table('bills')->where('id', (int)$request->bill_id)->update(['status' => 'Sudah Dibayar']) && DB::table('vouchers')->where('kode_voucher', $request->kode_voucher)->delete()) {
+            return redirect('user/bill-konfirmasi')->with('error', 'Bill gagal dikonfirmasi');
+        }
+        return redirect('user/bill')->with('success', 'Bill berhasil dikonfirmasi');
     }
+
+    // public function post_bill(Request $request)
+    // {
+    //     $request->validate([
+    //         'voucher' => 'required',
+    //         'bill' => 'required',
+    //     ]);
+
+    //     $bill = DB::table('bills')
+    //         ->where('amount', '=', $request->bill)
+    //         ->where('nik', '=', Auth::user()->NIK)
+    //         ->first();
+
+    //     $voucher = DB::table('vouchers')
+    //         ->where('kode_voucher', '=', $request->voucher)
+    //         ->where('diklaim_oleh', '=', Auth::user()->NIK)
+    //         ->first();
+
+    //     if ($bill && $voucher) {
+    //         $bill_update = DB::table('bills')->where('id', $request->bill)->update(['status' => 'Sudah Dibayar']);
+    //         if ($bill_update) {
+    //             return redirect('user/bill-konfirmasi')->with('success', 'Bill berhasil dikonfirmasi');
+    //         }
+    //     }
+    //     return redirect('user/bill-konfirmasi')->with('error', 'Bill gagal dikonfirmasi');
+    // }
 
     public function post_voucher(Request $request)
     {
