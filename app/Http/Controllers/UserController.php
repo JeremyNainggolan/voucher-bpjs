@@ -47,8 +47,8 @@ class UserController extends Controller
     public function my_voucher()
     {
         $data['page_title'] = 'My Voucher';
-        $data['my_vouchers'] = DB::table('bills')
-            ->join('vouchers', 'bills.nik', '=', 'vouchers.diklaim_oleh')
+        $data['my_vouchers'] = DB::table('vouchers')
+            ->where('diklaim_oleh', Auth::user()->NIK)
             ->get();
         return view('user.my-voucher', compact('data'));
     }
@@ -73,15 +73,19 @@ class UserController extends Controller
             'voucher' => 'required',
         ]);
 
-        $voucher = DB::table('vouchers')->where('kode_voucher', $request->voucher)->first();
+        $voucher = DB::table('vouchers')
+            ->where('kode_voucher', '=', $request->voucher)
+            ->whereNull('diklaim_oleh')
+            ->first();
+
 
         if ($voucher) {
             $voucher_update = DB::table('vouchers')->where('kode_voucher', $request->voucher)->update(['diklaim_oleh' => Auth::user()->NIK]);
             if ($voucher_update) {
                 return redirect('user/my-voucher')->with('success', 'Voucher berhasil dikonfirmasi');
-            }
+            } 
         }
-        return redirect('user/my-voucher')->with('error', 'Voucher tidak ditemukan');
+        return redirect('user/my-voucher')->with('error', 'Voucher sudah digunakan');
     }
 
 }
