@@ -30,8 +30,8 @@
                             <div class="input-group mb-3">
                                 <select id="voucherSelect" class="form-select" aria-label="Default select example">
                                     <option selected>Cek Voucher</option>
-                                    @foreach($data['bills'] as $bill)
-                                        <option value="{{ $bill->nama_voucher != null ? $bill->jumlah_voucher : '' }}"> {{$bill->nama_voucher != null ? $bill->nama_voucher : '' }}</option>
+                                    @foreach($data['vouchers'] as $voucher)
+                                        <option value="{{ $voucher->nama_voucher != null ? $voucher->jumlah_voucher : '' }}"> {{$voucher->nama_voucher != null ? $voucher->nama_voucher : '' }}</option>
                                     @endforeach
                                 </select>
                                 <button type="button" class="btn btn-outline-secondary" id="applyVoucher">Terapkan</button>

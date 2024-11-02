@@ -19,30 +19,30 @@
                 <div class="card row m-4 border-0 rounded-3 shadow-lg fw-bolder fs-5">
                     <div class="bg-success pt-2 rounded-top-2 text-light">
                         <div class="col-12 m-2">
-                            Nama: {{ $bill['nama'] ?? 'Tidak ada data' }}
+                            Nama: {{ $bill->nama }}
                         </div>
                         <div class="col-12 m-2">
-                            NIK: {{ $bill['nik'] ?? 'Tidak ada data' }}
+                            NIK: {{ $bill->nik  }}
                         </div>
                     </div>
                     <div class="bg-light rounded-bottom-2">
                         <div class="col-12 m-2">
                             <i class="bi bi-credit-card-fill me-2"></i>Pembayaran:
-                            Rp {{ number_format($bill['pembayaran'], 0, ',', '.') }}
+                            Rp {{ number_format($bill->pembayaran, 0, ',', '.') }}
                         </div>
                         <div class="col-12 m-2">
-                            <i class="bi bi-front me-2"></i>Channel: {{ $bill['channel'] }}
+                            <i class="bi bi-front me-2"></i>Channel: {{ $bill->channel }}
                         </div>
                         <div class="col-12 m-2">
                             <i class="bi bi-calendar-date me-2"></i>Tanggal Jatuh
-                            Tempo: {{ date('d-m-Y', strtotime($bill['tanggal_jatuh_tempo'])) }}
+                            Tempo: {{ date('d-m-Y', strtotime($bill->tanggal_jatuh_tempo)) }}
                         </div>
                         <div class="col-12 m-2">
-                            <i class="bi bi-check-square me-2"></i>Status: {{ $bill['status'] }}
+                            <i class="bi bi-check-square me-2"></i>Status: {{ $bill->status }}
                         </div>
                         <div class="col-12 text-end my-2">
-                            @if($bill['status'] == 'Belum Dibayar')
-                                <a href="{{ url('user/bill-konfirmasi/' . $bill['nik']) }}" class="btn btn-success">Bayar</a>
+                            @if($bill->status == 'Belum Dibayar')
+                                <a href="{{ url('user/bill-konfirmasi') }}" class="btn btn-success">Bayar</a>
                             @else
                                 <a class="btn btn-secondary" disabled>Sudah Dibayar</a>
                             @endif
