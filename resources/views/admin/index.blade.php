@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <h1>Daftar Voucher</h1>
-    <a href="{{ route('vouchers.create') }}" class="btn btn-primary">Buat Voucher Baru</a>
+    <a href="{{ url('admin/generate_voucher') }}" class="btn btn-primary">Buat Voucher Baru</a>
 
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
@@ -19,12 +19,12 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($vouchers as $voucher)
+            @foreach($data['vouchers'] as $voucher)
                 <tr>
-                    <td>{{ $voucher->nama_voucher }}</td>
-                    <td>{{ $voucher->kode_voucher }}</td>
-                    <td>{{ $voucher->harga_voucher }}</td>
-                    <td>{{ $voucher->expired_date }}</td>
+                    <td>{{ $voucher['nama_voucher'] }}</td>
+                    <td>{{ $voucher['kode_voucher'] }}</td>
+                    <td>{{ $voucher['jumlah_voucher'] }}</td>
+                    <td>{{ $voucher['expired_date'] }}</td>
                 </tr>
             @endforeach
         </tbody>

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Voucher;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str; 
+use Illuminate\Support\Str;
 
 class VoucherController extends Controller
 {
@@ -28,7 +28,7 @@ class VoucherController extends Controller
         ]);
 
         // Generate random voucher code
-        $kode_voucher = Str::random(10); 
+        $kode_voucher = Str::random(10);
 
         Voucher::create([
             'nama_voucher' => $request->nama_voucher,
@@ -37,7 +37,7 @@ class VoucherController extends Controller
             'expired_date' => $request->expired_date,
         ]);
 
-        return redirect()->route('admin.index')->with('success', 'Voucher created successfully.');
+        return redirect('admin/')->with('success', 'Voucher created successfully.');
     }
 
     public function index()

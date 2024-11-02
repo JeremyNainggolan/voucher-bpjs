@@ -8,8 +8,8 @@ use App\Http\Controllers\VoucherController;
 
 Route::resource('vouchers', VoucherController::class);
 
-Route::get('/bill', [BillController::class, 'index'])->name('bill')->middleware('auth');
-Route::post('/bill/{bill}/pay', [BillController::class, 'pay'])->name('bill.pay')->middleware('auth');
+Route::get('/bill', [BillController::class, 'index'])->name('bill');
+Route::post('/bill/{bill}/pay', [BillController::class, 'pay'])->name('bill.pay');
 Route::get('/user/bill', [BillController::class, 'showBill']);
 
 Route::prefix('user')->group(function(){

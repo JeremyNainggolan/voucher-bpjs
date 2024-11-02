@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title', $data['page_title'])
 @section('content')
 <div class="container">
     <h1>Buat Voucher Baru</h1>
@@ -16,7 +16,7 @@
         </div>
         <div class="form-group">
             <label for="jumlah_voucher">Jumlah Voucher</label>
-            <input type="number" class="form-control" id="jumlah_voucher" name="jumlah_voucher" required>
+            <input type="number" min="1" class="form-control" id="jumlah_voucher" name="jumlah_voucher" required>
         </div>
         <div class="form-group">
             <label for="expired_date">Expired Date</label>
