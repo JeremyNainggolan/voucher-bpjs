@@ -8,13 +8,16 @@
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
             <ul class="navbar-nav fw-bold">
                 <li class="nav-item px-lg-5">
-                    <x-nav-links href="/user/dashboard" :active="request()->is('user/dashboard') || request()->is('user')">Dashboard</x-nav-links>
-                </li>
-                <li class="nav-item px-lg-5">
                     <x-nav-links href="/user/bill" :active="request()->is('user/bill') || request()->is('user/bill-konfirmasi')">Bill</x-nav-links>
                 </li>
                 <li class="nav-item px-lg-5">
                     <x-nav-links href="/user/my-voucher" :active="request()->is('user/my-voucher')">My Voucher</x-nav-links>
+                </li>
+                <li class="nav-item px-lg-5">
+                    <form method="GET" action="{{ url('user/logout') }}" role="form">
+                        @csrf
+                        <button type="submit" class="btn btn-danger" href="{{ url('admin/logout') }}">Logout</button>
+                    </form>
                 </li>
             </ul>
         </div>

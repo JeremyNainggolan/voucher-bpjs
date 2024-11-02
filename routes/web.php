@@ -17,13 +17,15 @@ Route::prefix('user')->group(function(){
     Route::get('/', [UserController::class, 'index']);
     Route::get('/login', [UserController::class, 'login']);
     Route::post('/login', [UserController::class, 'post_login'])->name('login');
-    Route::get('dashboard', [UserController::class, 'index']);
-    Route::get('bill', [UserController::class, 'bill']);
-    Route::get('my-voucher', [UserController::class, 'my_voucher']);
-    Route::post('my-voucher', [UserController::class, 'post_voucher'])->name('my_voucher');
-    Route::get('bill-konfirmasi', [UserController::class, 'bill_konfirmasi']);
-    Route::post('bill-konfirmasi', [UserController::class, 'post_bill'])->name('bill.post');
 
+    Route::middleware('auth')->group(function(){
+        Route::get('dashboard', [UserController::class, 'index']);
+        Route::get('bill', [UserController::class, 'bill']);
+        Route::get('my-voucher', [UserController::class, 'my_voucher']);
+        Route::post('my-voucher', [UserController::class, 'post_voucher'])->name('my_voucher');
+        Route::get('bill-konfirmasi', [UserController::class, 'bill_konfirmasi']);
+        Route::post('bill-konfirmasi', [UserController::class, 'post_bill'])->name('bill.post');
+    });
 });
 
 Route::prefix('admin')->group(function(){

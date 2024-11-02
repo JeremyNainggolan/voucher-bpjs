@@ -83,9 +83,9 @@ class UserController extends Controller
             $voucher_update = DB::table('vouchers')->where('kode_voucher', $request->voucher)->update(['diklaim_oleh' => Auth::user()->NIK]);
             if ($voucher_update) {
                 return redirect('user/my-voucher')->with('success', 'Voucher berhasil dikonfirmasi');
-            } 
+            }
         }
-        return redirect('user/my-voucher')->with('error', 'Voucher sudah digunakan');
+        return redirect('user/my-voucher')->with('error', 'Kode Voucher Tidak Gacor');
     }
 
 }
