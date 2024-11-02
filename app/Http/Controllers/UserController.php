@@ -25,34 +25,25 @@ class UserController extends Controller
     public function my_voucher()
     {
         $data['page_title'] = 'My Voucher';
-        $data['my_vouchers'] = DB::table('users')
-            ->join('vouchers', 'users.voucher', '=', 'vouchers.kode_voucher')
-            ->select('users.*', 'vouchers.jumlah_voucher')
+        $data['my_vouchers'] = DB::table('bills')
+            ->join('vouchers', 'bills.nik', '=', 'vouchers.diklaim_oleh')
             ->get();
         return view('user.my-voucher', compact('data'));
     }
 
-    public function bill_konfirmasi($id)
+    public function bill_konfirmasi($nik)
     {
         $data['page_title'] = 'Konfirmasi Pembayaran';
-        $exist = DB::table('bills')
-            ->join('users', 'bills.user_id', '=', 'users.id')
-            ->join('vouchers', 'users.voucher', '=', 'vouchers.kode_voucher')
-            ->where('bills.user_id', $id)->get();
-        
-        if ($exist->isEmpty()) {
-            $data['bills'] = DB::table('bills')
-                ->join('users', 'bills.user_id', '=', 'users.id')
-                ->select('bills.*', 'users.name', 'users.email', 'users.voucher', 'users.voucher_name')
-                ->where('bills.user_id', $id)->get();
-        } else {
-            $data['bills'] = DB::table('bills')
-                ->join('users', 'bills.user_id', '=', 'users.id')
-                ->join('vouchers', 'users.voucher', '=', 'vouchers.kode_voucher')
-                ->select('bills.*', 'users.name', 'users.email', 'users.voucher', 'users.voucher_name', 'vouchers.jumlah_voucher')
-                ->where('bills.user_id', $id)->get();
-        }
+        $data['bills'] = DB::table('bills')
+            ->leftJoin('vouchers', 'bills.nik', '=', 'vouchers.diklaim_oleh')
+            ->where('bills.nik', $nik)->get();
+
         return view('user.bill-konfirmasi', compact('data'));
+    }
+
+    public function post_bill(Request $request)
+    {
+
     }
 
     public function post_voucher(Request $request)
@@ -63,9 +54,9 @@ class UserController extends Controller
 
         $voucher = DB::table('vouchers')->where('kode_voucher', $request->voucher)->first();
 
-        if (DB::table('vouchers')->where('kode_voucher', $voucher->kode_voucher)->exists()) {
-            $user_add = DB::table('users')->update(['voucher' => $voucher->kode_voucher, 'voucher_name' => $voucher->nama_voucher]);
-            if ($user_add) {
+        if ($voucher) {
+            $voucher_update = DB::table('vouchers')->where('kode_voucher', $request->voucher)->update(['diklaim_oleh' => '1234567890123456']);
+            if ($voucher_update) {
                 return redirect('user/my-voucher')->with('success', 'Voucher berhasil dikonfirmasi');
             }
         }

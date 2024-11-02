@@ -42,7 +42,7 @@
                         </div>
                         <div class="col-12 text-end my-2">
                             @if($bill['status'] == 'Belum Dibayar')
-                                <a href="{{ url('user/bill-konfirmasi/' . $bill['id']) }}" class="btn btn-success">Bayar</a>
+                                <a href="{{ url('user/bill-konfirmasi/' . $bill['nik']) }}" class="btn btn-success">Bayar</a>
                             @else
                                 <a class="btn btn-secondary" disabled>Sudah Dibayar</a>
                             @endif

@@ -26,12 +26,12 @@
 
                         <!-- Kode Voucher -->
                         <h5 class="mb-3">Kode Voucher</h5>
-                        <form>
+                        <form method="post" action="{{ url('user/bill') }}" enctype="multipart/form-data">
                             <div class="input-group mb-3">
                                 <select id="voucherSelect" class="form-select" aria-label="Default select example">
                                     <option selected>Cek Voucher</option>
                                     @foreach($data['bills'] as $bill)
-                                        <option value="{{ $bill->voucher_name != null ? $bill->jumlah_voucher : 'Voucher Tidak Tersedia' }}"> {{$bill->voucher_name != null ? $bill->voucher_name : 'Voucher Tidak Tersedia' }}</option>
+                                        <option value="{{ $bill->nama_voucher != null ? $bill->jumlah_voucher : '' }}"> {{$bill->nama_voucher != null ? $bill->nama_voucher : '' }}</option>
                                     @endforeach
                                 </select>
                                 <button type="button" class="btn btn-outline-secondary" id="applyVoucher">Terapkan</button>

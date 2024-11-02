@@ -20,6 +20,7 @@ Route::prefix('user')->group(function(){
     Route::get('my-voucher', [UserController::class, 'my_voucher']);
     Route::post('my-voucher', [UserController::class, 'post_voucher'])->name('my_voucher');
     Route::get('bill-konfirmasi/{id}', [UserController::class, 'bill_konfirmasi']);
+    Route::post('bill-konfirmasi/{id}', [UserController::class, 'post_bill'])->name('bill.post');
 
 });
 

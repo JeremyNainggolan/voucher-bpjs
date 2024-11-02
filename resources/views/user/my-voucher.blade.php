@@ -25,8 +25,8 @@
                 <div class="p-4">
                     <h2 class="fw-bold fs-2 mt-1">Voucher Saya</h2>
                     <div class="col-auto">
-                        <p><b>Nama: </b>{{ $my_voucher->voucher_name }}</p>
-                        <p><b>Kode: </b>{{ $my_voucher->voucher }}</p>
+                        <p><b>Nama: </b>{{ $my_voucher->nama_voucher }}</p>
+                        <p><b>Kode: </b>{{ $my_voucher->kode_voucher }}</p>
                         <p><b>Potongan Harga: </b>{{ number_format($my_voucher->jumlah_voucher, 0, ',', '.') }}</p>
                     </div>
                 </div>
