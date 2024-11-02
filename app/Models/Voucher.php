@@ -13,6 +13,7 @@ class Voucher extends Model
         'nama_voucher',
         'kode_voucher',
         'jumlah_voucher',
+        'diklaim_oleh',
         'expired_date',
     ];
 }

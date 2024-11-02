@@ -1,6 +1,5 @@
 <?php
 
-// app/Models/TagihanPeserta.php
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
