@@ -25,6 +25,7 @@ Route::prefix('user')->group(function(){
         Route::post('my-voucher', [UserController::class, 'post_voucher'])->name('my_voucher');
         Route::get('bill-konfirmasi', [UserController::class, 'bill_konfirmasi']);
         Route::post('bill-konfirmasi', [UserController::class, 'post_bill'])->name('bill.post');
+        Route::get('logout', [UserController::class, 'logout']);
     });
 });
 

@@ -7,6 +7,7 @@ use App\Models\Voucher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
@@ -35,6 +36,12 @@ class UserController extends Controller
         }
 
         return redirect(url('user/login'))->with('error', 'Username or Password is Invalid');
+    }
+
+    public function logout() {
+        Session::flush();
+        Auth::logout();
+        return redirect(url('user/login'));
     }
 
     public function bill()
